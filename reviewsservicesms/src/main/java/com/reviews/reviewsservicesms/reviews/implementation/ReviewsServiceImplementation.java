@@ -1,8 +1,10 @@
 package com.reviews.reviewsservicesms.reviews.implementation;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.reviews.reviewsservicesms.reviews.Reviews;
 import com.reviews.reviewsservicesms.reviews.ReviewsRepository;
 import com.reviews.reviewsservicesms.reviews.ReviewsService;
@@ -42,16 +44,19 @@ public class ReviewsServiceImplementation implements ReviewsService {
     @Override
     public boolean updateReview(Long reviewId, Reviews updatedReviews) {
         Reviews reviews = reviewsRepository.findById(reviewId).orElse(null);
-        if (reviewId != null) {
-            reviews.setTitle(updatedReviews.getTitle());
-            reviews.setDescription(updatedReviews.getDescription());
-            reviews.setRating(updatedReviews.getRating());
-            reviews.setCompanyId(updatedReviews.getCompanyId());
-            reviewsRepository.save(reviews);
-            return true;
-        } else {
-            return false;
+        if (reviews == null) {
+            return false; // Or throw new ResourceNotFoundException("Review not found with id: " +
+                          // reviewId);
         }
+
+        reviews.setTitle(updatedReviews.getTitle());
+        reviews.setDescription(updatedReviews.getDescription());
+        reviews.setRating(updatedReviews.getRating());
+        reviews.setCompanyId(updatedReviews.getCompanyId());
+
+        reviewsRepository.save(reviews);
+        return true;
+
     }
 
     @Override
