@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.jobservice.jobservicems.Dto.JobwithCompanyDto;
+
 import java.util.List;
 
 
@@ -19,7 +21,7 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    public ResponseEntity<List<Job>> findAll() {
+    public ResponseEntity<List<JobwithCompanyDto>> findAll() {
         return ResponseEntity.ok(jobService.findALL()); // return jobs;
     }
 
