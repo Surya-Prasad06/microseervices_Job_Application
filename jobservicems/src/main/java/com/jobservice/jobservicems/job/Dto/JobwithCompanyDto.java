@@ -1,4 +1,4 @@
-package com.jobservice.jobservicems.Dto;
+package com.jobservice.jobservicems.job.Dto;
 
 import com.jobservice.jobservicems.job.Job;
 import com.jobservice.jobservicems.job.external.Company;

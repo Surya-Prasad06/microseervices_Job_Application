@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.jobservice.jobservicems.Dto.JobwithCompanyDto;
+import com.jobservice.jobservicems.job.Dto.JobwithCompanyDto;
 import com.jobservice.jobservicems.job.Job;
 import com.jobservice.jobservicems.job.JobRepository;
 import com.jobservice.jobservicems.job.JobService;
@@ -15,7 +16,12 @@ import com.jobservice.jobservicems.job.external.Company;
 
 @Service
 public class JobServiceImplementation implements JobService {
+
+
     JobRepository jobrepo;
+
+    @Autowired
+    RestTemplate restTemplate;
 
     public JobServiceImplementation(JobRepository jobrepo) {
         this.jobrepo = jobrepo;
@@ -27,12 +33,12 @@ public class JobServiceImplementation implements JobService {
         List<Job> jobs = jobrepo.findAll();
         List<JobwithCompanyDto> jobwithCompanyDtos = new ArrayList<>();
 
-        RestTemplate restTemplate = new RestTemplate();
+//        RestTemplate restTemplate = new RestTemplate();
 
         for (Job job : jobs) {
             JobwithCompanyDto jobwithCompanyDto = new JobwithCompanyDto();
             jobwithCompanyDto.setJob(job);
-            Company company = restTemplate.getForObject("http://localhost:5002/companies/" + job.getCompanyId(), Company.class);
+            Company company = restTemplate.getForObject("http://COMPANYSERVICEMS:5002/companies/" + job.getCompanyId(), Company.class);
 
             jobwithCompanyDto.setCompany(company);
             jobwithCompanyDtos.add(jobwithCompanyDto);

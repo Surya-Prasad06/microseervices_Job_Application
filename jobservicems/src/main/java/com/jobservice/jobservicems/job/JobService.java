@@ -3,7 +3,7 @@ package com.jobservice.jobservicems.job;
 
 import java.util.List;
 
-import com.jobservice.jobservicems.Dto.JobwithCompanyDto;
+import com.jobservice.jobservicems.job.Dto.JobwithCompanyDto;
 
 public interface JobService {
 

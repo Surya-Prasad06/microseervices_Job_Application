@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.jobservice.jobservicems.Dto.JobwithCompanyDto;
+import com.jobservice.jobservicems.job.Dto.JobwithCompanyDto;
 
 import java.util.List;
 
